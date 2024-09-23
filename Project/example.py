@@ -124,26 +124,26 @@ class Rational:
         else:
             raise ValueError("Illegal type of the argument")
 
-    def __mul__(self, rhs):
+    def __mul__(self, rhs): # *
         return self.__clone().__imul__(rhs)
 
     # Деление обыкновенных дробей.
-    def __itruediv__(self, rhs):  # /=
+    def __itruediv__(self, rhs): # /=
         if isinstance(rhs, Rational):
             a = self.numerator * rhs.denominator
             b = self.denominator * rhs.numerator
 
             if b == 0:
                 raise ValueError("Illegal value of the denominator")
-
+            
             self.__numerator, self.__denominator = a, b
             self.__reduce()
             return self
         else:
             raise ValueError("Illegal type of the argument")
 
-    def __truediv__(self, rhs):  # /
-        return self.__clone().__truediv__(rhs)
+    def __truediv__(self, rhs): # /
+        return self.__clone().__itruediv__(rhs)
 
     # Отношение обыкновенных дробей.
     def __eq__(self, rhs):  # ==
